@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>customerdetail</h1>
+
+        <h2>Customer Name: {{CO.customer_name}}</h2>
+        <h2>Customer Phone: {{CO.customer_phone}}</h2>
+        <h2>Customer email: {{CO.customer_email}}</h2>
+        <h2>Cusomer address: {{CO.customer_address}}</h2>
+        <h2>Customer GST Number:
+            {% if CO.customer_gst_number %}
+            {{CO.customer_gst_number}}
+            {% else %}
+            No GST number
+            {% endif %}
+
+        </h2>
+        <h2>Created At: {{CO.created_at}}</h2>
+
+        <h3><a href="{% url 'CustomerUpdate' pk=CO.pk %}">Update</a></h3>
+    </center>
+    
+</body>
+</html>

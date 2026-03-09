@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Product Detail</h1>
+        <h2>Product Name: {{po.product_name | upper }}</h2>
+        
+
+
+
+            <table style="width: 70%;" border="2px" cellpadding="7px">
+
+                <tr>
+                    <th>Product name</th>
+                    <th>Product code</th>
+                    <th>product_description</th>
+                    <th>Product_price</th>
+                    <th>GST_percent</th>
+                    <th>Stock Quantity</th>
+                    <th>Created At</th>
+                </tr>
+
+
+
+                
+                <tr>
+                    <td>{{po.product_name}}</td>
+                    <td>{{po.product_code}}</td>
+                    <td>{{po.product_description}}</td>
+                    <td>{{po.product_price}}</td>
+                    <td>{{po.gst_percent}}</td>
+                    <td>{{po.stock_quantity}}</td>
+                    <td>{{po.created_at}}</td>
+                    
+                </tr>
+                
+
+            </table>
+            <a href="{% url 'ProductUpdate' pk=po.pk %}">update</a>
+
+
+
+
+
+
+
+
+
+
+
+
+    </center>
+    
+
+
+</body>
+</html>
