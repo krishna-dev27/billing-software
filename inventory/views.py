@@ -55,3 +55,16 @@ class CustomerDetail(DetailView):
 class CustomerUpdate(UpdateView):
     model=Customer
     fields='__all__'
+
+
+class CustomerList(ListView):
+    model=Customer
+    context_object_name='customerobjects'
+
+
+class CustomerDelete(DeleteView):
+    model=Customer
+    context_object_name='CO'
+    success_url=reverse_lazy('CustomerList')
+
+

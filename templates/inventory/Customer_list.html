@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <center>
+        <h1>Customer List</h1>
+
+        <table border="2px" style="width: 60%;" cellpadding="10px">
+            <tr>
+                <th>Customer name</th>
+                <th>Customer address</th>
+                <th>customer email</th>
+                <th>Edit</th>
+            </tr>
+
+            {% for customer in customerobjects %}
+            <tr>
+                <td>{{customer.customer_name}}</td>
+                <td>{{customer.customer_address}}</td>
+                <td>{{customer.customer_email}}</td>
+                <td> <a href="{% url 'CustomerUpdate' pk=customer.pk %}">edit</a></td>
+                <td> <a href="{% url 'CustomerDelete' pk=customer.pk %}">delete</a></td>
+                <td> <a href="{% url 'CustomerDetail' pk=customer.pk %}">view</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>
