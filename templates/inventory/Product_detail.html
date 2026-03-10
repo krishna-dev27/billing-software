@@ -23,6 +23,7 @@
                     <th>GST_percent</th>
                     <th>Stock Quantity</th>
                     <th>Created At</th>
+                    <th>image</th>
                 </tr>
 
 
@@ -36,6 +37,9 @@
                     <td>{{po.gst_percent}}</td>
                     <td>{{po.stock_quantity}}</td>
                     <td>{{po.created_at}}</td>
+                     <td><img src="{{po.product_image.url}}" alt="" srcset="" style="height: 100px ;">
+                    <!-- {{po.product_image.url}}</td>  -->
+
                     
                 </tr>
                 
