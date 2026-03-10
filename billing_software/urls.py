@@ -35,7 +35,13 @@ urlpatterns = [
     path('CustomerDetail/<int:pk>',CustomerDetail.as_view(),name='CustomerDetail'),
     path('CustomerUpdate/<int:pk>',CustomerUpdate.as_view(),name='CustomerUpdate'),
     path('CustomerList/',CustomerList.as_view(),name='CustomerList'),
-    path('CustomerDelete/<int:pk>',CustomerDelete.as_view(),name='CustomerDelete')
+    path('CustomerDelete/<int:pk>',CustomerDelete.as_view(),name='CustomerDelete'),
+
+
+
+    path('InvoiceCreate/',InvoiceCreate.as_view(),name='InvoiceCreate'),
+    path('InvoiceList/',InvoiceList.as_view(),name='InvoiceList'),
+    path('add_invoice_item/<int:pk>',add_invoice_item,name='add_invoice_item'),
     
 
 

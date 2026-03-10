@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Invoice List</h1>
+        {{invoices.customer.customer_name}}
+        <table border="2px">
+            <tr>
+                <th>Invoice Customer Name:</th>
+            </tr>
+            {% for invoice in invoices %}
+            <tr>
+                <td>{{invoice.customer.customer_name}}</td>
+                <td><a href="{% url 'add_invoice_item' pk=invoice.pk %}">Add bill</a></td>
+            </tr>
+
+        {% endfor %}
+
+
+        </table>
+
+
+        
+    </center>
+    
+</body>
+</html>

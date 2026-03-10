@@ -68,3 +68,31 @@ class CustomerDelete(DeleteView):
     success_url=reverse_lazy('CustomerList')
 
 
+
+
+
+#Invoice code
+
+class InvoiceCreate(CreateView):
+    model=Invoice
+    form_class=InvoiceForm
+    template_name='inventory/create_invoice.html'
+    success_url=reverse_lazy('InvoiceList')
+
+
+class InvoiceList(ListView):
+    model=Invoice
+    context_object_name='invoices'
+
+
+def add_invoice_item(request,pk):
+    invoice=Invoice.objects.filter(pk=pk)[0]
+    EIIMFO=InvoiceItemForm()
+
+    if request.method=='POST':
+        pass
+
+    d={'EIIMFO':EIIMFO,'invoice':invoice}
+    return render(request,'inventory/add_invoice_item.html',d)
+
+   

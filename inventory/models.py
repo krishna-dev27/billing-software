@@ -40,9 +40,9 @@ class Customer(models.Model):
 class Invoice(models.Model):
     customer=models.ForeignKey(Customer,on_delete=models.CASCADE)
     date=models.DateTimeField(auto_now_add=True)
-    total_amount=models.DecimalField(max_digits=10,decimal_places=2)
-    gst_amount=models.DecimalField(max_digits=10,decimal_places=2)
-    grand_total=models.DecimalField(max_digits=10,decimal_places=2)
+    total_amount=models.DecimalField(max_digits=10,decimal_places=2,default=0)
+    gst_amount=models.DecimalField(max_digits=10,decimal_places=2,default=0)
+    grand_total=models.DecimalField(max_digits=10,decimal_places=2,default=0)
 
     def __str__(self):
         return f'Invoice {self.id} - {self.customer.customer_name}'
@@ -64,4 +64,4 @@ class InvoiceItem(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.product.name} - {self.quantity}"
+        return f"{self.product.product_name} - {self.quantity}"
