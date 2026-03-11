@@ -9,7 +9,10 @@
     <center>
         <h1>add_invoice_item</h1>
         
-        <h4>{{invoice.customer.customer_name}}</h4>
+        {{IO.customer.customer_name}} <br>
+        {{IO.customer.customer_phone}} <br>
+        {{IO.customer.customer_email}} <br>
+        <h4>{{IO.customer.cusomr_name}}</h4>
        <form action="" method="POST">
         {% csrf_token %}
         {{EIIMFO.as_p}}

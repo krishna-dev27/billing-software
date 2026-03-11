@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from inventory.models import *
 from inventory.forms import *
 from django.http import HttpResponse
@@ -73,11 +73,11 @@ class CustomerDelete(DeleteView):
 
 #Invoice code
 
-class InvoiceCreate(CreateView):
+'''class InvoiceCreate(CreateView):
     model=Invoice
     form_class=InvoiceForm
     template_name='inventory/create_invoice.html'
-    success_url=reverse_lazy('InvoiceList')
+   
 
 
 class InvoiceList(ListView):
@@ -93,6 +93,34 @@ def add_invoice_item(request,pk):
         pass
 
     d={'EIIMFO':EIIMFO,'invoice':invoice}
-    return render(request,'inventory/add_invoice_item.html',d)
+    return render(request,'inventory/add_invoice_item.html',d)'''
 
-   
+def InvoiceCreate(request):
+    EIFO=InvoiceForm()
+    d={'EIFO':EIFO}
+    if request.method=='POST':
+        IFO=InvoiceForm(request.POST)
+        if IFO.is_valid():
+            SO=IFO.save()
+            return redirect('add_invoice_item',pk=SO.id)
+        
+        else:
+            EIFO = InvoiceForm()
+        d={'EIFO':EIFO}
+
+
+
+
+
+    return render(request,'inventory/create_invoice.html',d)
+
+
+
+def add_invoice_item(request,pk):
+    IO=Invoice.objects.get(pk=pk)
+    EIIMFO=InvoiceItemForm()
+    d={'IO':IO,'EIIMFO':EIIMFO}
+    if request.method=='POST':
+        pass
+
+    return render(request,'inventory/add_invoice_item.html',d)

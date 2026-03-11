@@ -46,7 +46,9 @@ class Invoice(models.Model):
 
     def __str__(self):
         return f'Invoice {self.id} - {self.customer.customer_name}'
+    
 
+    
 
 
 
