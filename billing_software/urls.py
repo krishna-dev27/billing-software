@@ -42,6 +42,12 @@ urlpatterns = [
     path('InvoiceCreate/',InvoiceCreate,name='InvoiceCreate'),
     # path('InvoiceList/',InvoiceList.as_view(),name='InvoiceList'),
      path('add_invoice_item/<int:pk>',add_invoice_item,name='add_invoice_item'),
+
+
+
+
+     path('dummy/',dummy,name='dummy'),
+     path('home/',home,name='home')
     
 
 

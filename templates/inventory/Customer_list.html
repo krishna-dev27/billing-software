@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+{% extends 'inventory/dummy.html' %}
+{% block title %}
+<title>Customer List</title>
+{% endblock %}
+{% block content %}
     <center>
         <h1>Customer List</h1>
 
-        <table border="2px" style="width: 60%;" cellpadding="10px">
+        <table border="2px" style="width: 60%;" cellpadding="10px" class="table table-striped-columns">
             <tr>
                 <th>Customer name</th>
                 <th>Customer address</th>
@@ -29,6 +25,7 @@
             </tr>
             {% endfor %}
         </table>
+       <h3>Add new Customer: <a href="{% url 'CreateCustomer' %}" class="btn btn-success">Add</a> </h3>
     </center>
-</body>
-</html>
+
+    {% endblock %}

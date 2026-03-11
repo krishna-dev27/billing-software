@@ -124,3 +124,13 @@ def add_invoice_item(request,pk):
         pass
 
     return render(request,'inventory/add_invoice_item.html',d)
+
+
+
+def dummy(request):
+    return render(request,'inventory/dummy.html')
+
+
+
+def home(request):
+    return render(request,'inventory/home.html')
