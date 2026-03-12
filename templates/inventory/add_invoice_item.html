@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'inventory/dummy.html' %}
+
+{% block title %}
+    <title>Invoice Items</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
     <center>
         <h1>add_invoice_item</h1>
         
@@ -13,11 +18,24 @@
         {{IO.customer.customer_phone}} <br>
         {{IO.customer.customer_email}} <br>
         <h4>{{IO.customer.cusomr_name}}</h4>
+
+
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+
+            
+        </table>
+
+
        <form action="" method="POST">
         {% csrf_token %}
         {{EIIMFO.as_p}}
         <input type="submit" value="Submit">
        </form>
     </center>
-</body>
-</html>
+    {% endblock%}
