@@ -12,21 +12,31 @@
 
 
     <center>
-        <h1>add_invoice_item</h1>
+        <h1>Add Items</h1>
         
-        {{IO.customer.customer_name}} <br>
-        {{IO.customer.customer_phone}} <br>
-        {{IO.customer.customer_email}} <br>
-        <h4>{{IO.customer.cusomr_name}}</h4>
+        <h4>Customer Name:{{IO.customer.customer_name}} </h4><br>
+       <h4>Total Amount:{{IO.total_amount}}</h4>  <br>
+       <h4>GST Amount: {{IO.gst_amount}} </h4> <br>
+       <h4>Grand Total:{{IO.grand_total}}</h4> 
 
 
-        <table>
+        <table class="table table-striped-columns " style="width: 50%;" >
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Total</th>
+                <th>delete</th>
             </tr>
+            {% for obj in BillObj %}
+            <tr>
+                <td>{{obj.product}}</td>
+                <td>{{obj.quantity}}</td>
+                <td>{{obj.price}}</td>
+                <td>{{obj.total}}</td>
+                <td><a href="{% url 'delete_item' pk=obj.pk %}" class="text-decoration-none">❌</a></td>
+            </tr>
+            {% endfor %}
 
             
         </table>

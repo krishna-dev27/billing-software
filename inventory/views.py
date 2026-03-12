@@ -119,13 +119,38 @@ def InvoiceCreate(request):
 def add_invoice_item(request,pk):
     IO=Invoice.objects.get(pk=pk)
     EIIMFO=InvoiceItemForm()
-    d={'IO':IO,'EIIMFO':EIIMFO}
+    BillObj=InvoiceItem.objects.filter(invoice=IO)
+    
+    d={'IO':IO,'EIIMFO':EIIMFO,'BillObj':BillObj}
     if request.method=='POST':
-        pass
+        IIMFO=InvoiceItemForm(request.POST)
+        if IIMFO.is_valid():
+            MIIMFO=IIMFO.save(commit=False)
+            MIIMFO.invoice=IO
+            MIIMFO.price= MIIMFO.product.product_price
+            MIIMFO.total = MIIMFO.quantity * MIIMFO.price
+            MIIMFO.save()
+            
+
+
+
+
+            
+            
+            return redirect(reverse('add_invoice_item', args=[pk]))
+            
 
     return render(request,'inventory/add_invoice_item.html',d)
 
+def delete_item(request, pk):
+    item = InvoiceItem.objects.get(pk=pk)
+    invoice_id = item.invoice.id   # get invoice id before delete
+    item.delete()
 
+    return redirect(reverse('add_invoice_item', args=[invoice_id]))
+
+    
+    
 
 def dummy(request):
     return render(request,'inventory/dummy.html')
