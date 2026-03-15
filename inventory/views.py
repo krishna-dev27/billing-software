@@ -158,8 +158,12 @@ def add_invoice_item(request,pk):
 
 
 def generate_bill(request,pk):
+
+
+    
     IO=Invoice.objects.get(pk=pk)
-    d={'IO':IO}
+    IIO=InvoiceItem.objects.filter(invoice=IO)
+    d={'IO':IO,'IIO':IIO}
     return render(request,'inventory/generate_bill.html',d)
 
 def delete_item(request, pk):
@@ -180,4 +184,21 @@ def dummy(request):
 
 
 def home(request):
-    return render(request,'inventory/home.html')
+    PO=Product.objects.all()
+    low_stock=[]
+
+    for O in PO:
+        if O.stock_quantity<5:
+            low_stock.append(O)
+
+
+
+    CO=Customer.objects.all()
+    IO=Invoice.objects.all()
+    total=Invoice.objects.aggregate(Sum('grand_total'))
+    d={'PO':len(PO),
+       'CO':len(CO),
+       'IO':len(IO),
+       'total':total['grand_total__sum'],
+       'low_stock':low_stock}
+    return render(request,'inventory/home.html',d)

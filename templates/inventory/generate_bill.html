@@ -4,7 +4,29 @@
 {% endblock %}
 {% block content %}
 <center>
-    <table style="width: 60%;" class="table table-striped-columns mt-3">
+    
+
+<table style="width: 60%;" class="table table-striped-columns mt-3">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>price</th>
+        <th>total</th>
+    </tr>
+    {% for OB in IIO %}
+
+    <tr>
+        <td>{{OB.product}}</td>
+        <td>{{OB.quantity}}</td>
+        <td>{{OB.price}}</td>
+        <td>{{OB.total}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br><hr style="width: 60%;">
+<br>
+
+<table style="width: 60%;" class="table table-striped-columns mt-3">
     <tr>
         <th>Bill no</th>
         <th>Customer Name</th>
