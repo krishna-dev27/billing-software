@@ -202,3 +202,9 @@ def home(request):
        'total':total['grand_total__sum'],
        'low_stock':low_stock}
     return render(request,'inventory/home.html',d)
+
+
+
+class InvoiceList(ListView):
+    model=Invoice
+    context_object_name='invoiceobjects'

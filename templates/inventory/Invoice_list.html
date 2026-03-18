@@ -15,8 +15,8 @@
             </tr>
             {% for invoice in invoices %}
             <tr>
-                <td>{{invoice.customer.customer_name}}</td>
-                <td><a href="{% url 'add_invoice_item' pk=invoice.pk %}">Add bill</a></td>
+                <td>{{invoiceobjects.customer.customer_name}}</td>
+                
             </tr>
 
         {% endfor %}
