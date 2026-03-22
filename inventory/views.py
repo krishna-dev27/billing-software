@@ -130,11 +130,24 @@ def add_invoice_item(request,pk):
     if request.method=='POST':
         IIMFO=InvoiceItemForm(request.POST)
         if IIMFO.is_valid():
-            MIIMFO=IIMFO.save(commit=False)
-            MIIMFO.invoice=IO
-            MIIMFO.price= MIIMFO.product.product_price
-            MIIMFO.total = MIIMFO.quantity * MIIMFO.price
-            MIIMFO.save()
+            product_and_quantity_d=IIMFO.cleaned_data
+            PO=Product.objects.get(product_name=product_and_quantity_d['product'])
+            if PO.stock_quantity<product_and_quantity_d['quantity']:
+                
+                return redirect(reverse('add_invoice_item', args=[pk]))
+            else:
+                PO.stock_quantity=PO.stock_quantity-product_and_quantity_d['quantity']
+                PO.save()
+
+                MIIMFO=IIMFO.save(commit=False)
+                MIIMFO.invoice=IO
+                MIIMFO.price= MIIMFO.product.product_price
+                MIIMFO.total = MIIMFO.quantity * MIIMFO.price
+                MIIMFO.save()
+
+                
+            
+            
 
 
             total_amount = BillObj.aggregate(Sum('total'))
