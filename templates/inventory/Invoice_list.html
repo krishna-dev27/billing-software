@@ -9,17 +9,13 @@
     <center>
         <h1>Invoice List</h1>
         {{invoices.customer.customer_name}}
-        <table border="2px">
-            <tr>
-                <th>Invoice Customer Name:</th>
-            </tr>
-            {% for invoice in invoices %}
-            <tr>
-                <td>{{invoiceobjects.customer.customer_name}}</td>
-                
-            </tr>
+        {% for IO in invoiceobjects %}
+        
 
         {% endfor %}
+       
+
+        
 
 
         </table>

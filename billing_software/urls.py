@@ -40,7 +40,7 @@ urlpatterns = [
 
 
     path('InvoiceCreate/',InvoiceCreate,name='InvoiceCreate'),
-    # path('InvoiceList/',InvoiceList.as_view(),name='InvoiceList'),
+    path('InvoiceList/',InvoiceList.as_view(),name='InvoiceList'),
      path('add_invoice_item/<int:pk>',add_invoice_item,name='add_invoice_item'),
      path('delete_item/<int:pk>',delete_item,name='delete_item'),
      path('generate_bill/<int:pk>',generate_bill,name='generate_bill'),
