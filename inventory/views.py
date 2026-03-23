@@ -134,7 +134,11 @@ def add_invoice_item(request,pk):
             PO=Product.objects.get(product_name=product_and_quantity_d['product'])
             if PO.stock_quantity<product_and_quantity_d['quantity']:
                 
-                return redirect(reverse('add_invoice_item', args=[pk]))
+                #return redirect(reverse('add_invoice_item', args=[pk]))
+               
+                d2={'data':'No stock','pname':PO.product_name,'pcount':PO.stock_quantity}
+                d.update(d2)
+                return render(request,'inventory/add_invoice_item.html',d)
             else:
                 PO.stock_quantity=PO.stock_quantity-product_and_quantity_d['quantity']
                 PO.save()

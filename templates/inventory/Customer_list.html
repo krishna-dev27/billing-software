@@ -1,31 +1,78 @@
 {% extends 'inventory/dummy.html' %}
+
 {% block title %}
-<title>Customer List</title>
+<title>Customers</title>
 {% endblock %}
+
 {% block content %}
-    <center>
-        <h1>Customer List</h1>
 
-        <table border="2px" style="width: 60%;" cellpadding="10px" class="table table-striped-columns">
-            <tr>
-                <th>Customer name</th>
-                <th>Customer address</th>
-                <th>customer email</th>
-                <th>Edit</th>
-            </tr>
+<div class="container mt-4">
 
-            {% for customer in customerobjects %}
-            <tr>
-                <td>{{customer.customer_name}}</td>
-                <td>{{customer.customer_address}}</td>
-                <td>{{customer.customer_email}}</td>
-                <td> <a href="{% url 'CustomerUpdate' pk=customer.pk %}">edit</a></td>
-                <td> <a href="{% url 'CustomerDelete' pk=customer.pk %}">delete</a></td>
-                <td> <a href="{% url 'CustomerDetail' pk=customer.pk %}">view</a></td>
-            </tr>
-            {% endfor %}
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">👥 Customer List</h2>
+
+        <a href="{% url 'CreateCustomer' %}" class="btn btn-success">
+            + Add Customer
+        </a>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-sm p-3">
+
+        <table class="table table-hover table-bordered text-center align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for customer in customerobjects %}
+                <tr>
+                    <td>{{customer.customer_name}}</td>
+                    <td>{{customer.customer_address}}</td>
+                    <td>{{customer.customer_email}}</td>
+
+                    <td>
+                        <a href="{% url 'CustomerDetail' pk=customer.pk %}" 
+                           class="btn btn-sm btn-info">
+                           View
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{% url 'CustomerUpdate' pk=customer.pk %}" 
+                           class="btn btn-sm btn-warning">
+                           Edit
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{% url 'CustomerDelete' pk=customer.pk %}" 
+                           class="btn btn-sm btn-danger">
+                           Delete
+                        </a>
+                    </td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-muted">
+                        No customers available
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
         </table>
-       <h3>Add new Customer: <a href="{% url 'CreateCustomer' %}" class="btn btn-success">Add</a> </h3>
-    </center>
 
-    {% endblock %}
+    </div>
+
+</div>
+
+{% endblock %}

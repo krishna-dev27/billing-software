@@ -1,22 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <center>
-        <h1>Product Delete</h1>
+{% extends 'inventory/dummy.html' %}
 
+{% block title %}
+<title>Delete Product</title>
+{% endblock %}
 
+{% block content %}
 
-        <h2>Are you sure in deletion {{PO.product_name}}????</h2>
-        <form action="" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Delete">
-            <a href="{% url 'ProductList' %}">No</a>
-        </form>
-    </center>
-</body>
-</html>
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+
+            <div class="card shadow-lg border-0 text-center">
+
+                <!-- Header -->
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">⚠ Delete Product</h4>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body">
+
+                    <p class="fs-5">
+                        Are you sure you want to delete  
+                        <strong class="text-danger">
+                            {{PO.product_name}}
+                        </strong>?
+                    </p>
+
+                    <p class="text-muted">
+                        This action cannot be undone.
+                    </p>
+
+                    <!-- Buttons -->
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+
+                            <button type="submit" class="btn btn-danger px-4">
+                                Delete
+                            </button>
+
+                            <a href="{% url 'ProductList' %}" 
+                               class="btn btn-secondary px-4">
+                               Cancel
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

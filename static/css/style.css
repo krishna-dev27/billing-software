@@ -29,3 +29,25 @@ border-radius:12px;
 box-shadow:0 4px 12px rgba(0,0,0,0.05);
 border:none;
 }
+
+.dashboard-card {
+    transition: 0.3s;
+    border-radius: 12px;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+
+
+.menu-btn:hover {
+    transform: scale(1.02);
+}
+input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+}

@@ -1,66 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <center>
-        <h1>Product Detail</h1>
-        <h2>Product Name: {{po.product_name | upper }}</h2>
-        
+{% extends 'inventory/dummy.html' %}
 
+{% block title %}
+<title>Product Detail</title>
+{% endblock %}
 
+{% block content %}
 
-            <table style="width: 70%;" border="2px" cellpadding="7px">
+<div class="container mt-5">
 
-                <tr>
-                    <th>Product name</th>
-                    <th>Product code</th>
-                    <th>product_description</th>
-                    <th>Product_price</th>
-                    <th>GST_percent</th>
-                    <th>Stock Quantity</th>
-                    <th>Created At</th>
-                    <th>image</th>
-                </tr>
+    <div class="row justify-content-center">
+        <div class="col-md-7">
 
+            <div class="card shadow-lg border-0">
 
+                <!-- Header -->
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">{{po.product_name|upper}}</h4>
+                </div>
 
-                
-                <tr>
-                    <td>{{po.product_name}}</td>
-                    <td>{{po.product_code}}</td>
-                    <td>{{po.product_description}}</td>
-                    <td>{{po.product_price}}</td>
-                    <td>{{po.gst_percent}}</td>
-                    <td>{{po.stock_quantity}}</td>
-                    <td>{{po.created_at}}</td>
-                     <td><img src="{{po.product_image.url}}" alt="" srcset="" style="height: 100px ;">
-                    <!-- {{po.product_image.url}}</td>  -->
+                <!-- Body -->
+                <div class="card-body">
 
-                    
-                </tr>
-                
+                    <div class="row">
 
-            </table>
-            <a href="{% url 'ProductUpdate' pk=po.pk %}">update</a>
+                        <!-- Image -->
+                        <div class="col-md-4 text-center">
+                            <img src="{{po.product_image.url}}" 
+                                 class="img-fluid rounded shadow-sm"
+                                 style="max-height: 150px;">
+                        </div>
 
+                        <!-- Details -->
+                        <div class="col-md-8">
+                            <table class="table table-bordered">
 
+                                <tr>
+                                    <th>Product Code</th>
+                                    <td>{{po.product_code}}</td>
+                                </tr>
 
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{po.product_description}}</td>
+                                </tr>
 
+                                <tr>
+                                    <th>Price</th>
+                                    <td>₹ {{po.product_price}}</td>
+                                </tr>
 
+                                <tr>
+                                    <th>GST (%)</th>
+                                    <td>{{po.gst_percent}}</td>
+                                </tr>
 
+                                <tr>
+                                    <th>Stock</th>
+                                    <td>{{po.stock_quantity}}</td>
+                                </tr>
 
+                                <tr>
+                                    <th>Created At</th>
+                                    <td>{{po.created_at}}</td>
+                                </tr>
 
+                            </table>
+                        </div>
 
+                    </div>
 
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between mt-4">
 
+                        <a href="{% url 'ProductList' %}" 
+                           class="btn btn-secondary">
+                           ← Back
+                        </a>
 
-    </center>
-    
+                        <a href="{% url 'ProductUpdate' pk=po.pk %}" 
+                           class="btn btn-warning">
+                           Edit
+                        </a>
 
+                    </div>
 
-</body>
-</html>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

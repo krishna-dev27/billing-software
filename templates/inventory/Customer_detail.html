@@ -1,31 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <center>
-        <h1>customerdetail</h1>
+{% extends 'inventory/dummy.html' %}
 
-        <h2>Customer Name: {{CO.customer_name}}</h2>
-        <h2>Customer Phone: {{CO.customer_phone}}</h2>
-        <h2>Customer email: {{CO.customer_email}}</h2>
-        <h2>Cusomer address: {{CO.customer_address}}</h2>
-        <h2>Customer GST Number:
-            {% if CO.customer_gst_number %}
-            {{CO.customer_gst_number}}
-            {% else %}
-            No GST number
-            {% endif %}
+{% block title %}
+<title>Customer Details</title>
+{% endblock %}
 
-        </h2>
-        <h2>Created At: {{CO.created_at}}</h2>
+{% block content %}
 
-        <h3><a href="{% url 'CustomerUpdate' pk=CO.pk %}">Update</a></h3>
-        <h3><a href="{% url 'CustomerList' %}">Customer List</a></h3>
-    </center>
-    
-</body>
-</html>
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0">
+
+                <!-- Header -->
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Customer Details</h4>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body">
+
+                    <table class="table table-bordered">
+
+                        <tr>
+                            <th>Name</th>
+                            <td>{{CO.customer_name}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{CO.customer_phone}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Email</th>
+                            <td>{{CO.customer_email}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Address</th>
+                            <td>{{CO.customer_address}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>GST Number</th>
+                            <td>
+                                {% if CO.customer_gst_number %}
+                                    {{CO.customer_gst_number}}
+                                {% else %}
+                                    <span class="text-muted">Not Available</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Created At</th>
+                            <td>{{CO.created_at}}</td>
+                        </tr>
+
+                    </table>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between mt-4">
+
+                        <a href="{% url 'CustomerList' %}" 
+                           class="btn btn-secondary">
+                           ← Back
+                        </a>
+
+                        <a href="{% url 'CustomerUpdate' pk=CO.pk %}" 
+                           class="btn btn-warning">
+                           Edit
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
