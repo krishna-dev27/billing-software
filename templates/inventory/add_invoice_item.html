@@ -50,7 +50,7 @@
             <tbody>
                 {% for obj in BillObj %}
                 <tr>
-                    <td>{{obj.product}}</td>
+                    <td>{{obj.product | upper}}</td>
                     <td>{{obj.quantity}}</td>
                     <td>₹ {{obj.price}}</td>
                     <td>₹ {{obj.total}}</td>
